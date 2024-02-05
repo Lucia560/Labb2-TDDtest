@@ -46,7 +46,8 @@ class CalculatorTest {
         String numbers = "//;\n1;2";
         var result = calculator.Add(numbers);
 
-        assertEquals(3, result);
+        assertThat(result).isEqualTo(3);
+
     }
 
     @Test
@@ -78,6 +79,16 @@ class CalculatorTest {
 
       assertTrue(actualMessage.contains(expectedMessage));
 
+    }
+
+    @Test
+    @DisplayName("Given numbers bigger than 1000 replace them with 0 ")
+    void givenNumbersBiggerThan_1000ReplaceThemWith_0(){
+       var calculator = new Calculator();
+       String numbers = "2,1000";
+       var result = calculator.Add(numbers);
+
+       assertThat(result).isEqualTo(2);
     }
 
 }

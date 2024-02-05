@@ -32,14 +32,14 @@ public class Calculator {
                 int num = Integer.parseInt(number.trim());
                 if (num < 0) {
                     negativeNumbers.add(num);
-                } else {
+                } else if (num < 1000) {
                     sum += num;
                 }
             }
         }
         if (!negativeNumbers.isEmpty()) {
             String negativeNumberString = negativeNumbers.stream()
-                    .map(n -> n.toString())
+                    .map(Object::toString)
                     .collect(Collectors.joining(", "));
             throw new IllegalArgumentException("Negative numbers are not allowed:" + negativeNumberString);
         }
