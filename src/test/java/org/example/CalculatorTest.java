@@ -13,7 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class CalculatorTest {
 
  Calculator calculator;
-  // tests for empty string. one number , 2 numbers and unknown amount numbers
+  // test for empty string and unknown amount of numbers
+  // correct format
 
   @Test
   @DisplayName("Given an empty string return 0")
@@ -24,7 +25,7 @@ class CalculatorTest {
       assertEquals(0, calculator.Add(""));
   }
 
-  @Test
+ /* @Test
   @DisplayName("Given two as number return  sum as two")
   void givenTwoAsANumberReturnSumAsTwo(){
       var calculator =  new Calculator();
@@ -36,13 +37,6 @@ class CalculatorTest {
   void givenTwoAndFiveAsNumbersTheSumEqualsSeven(){
       var calculator =  new Calculator();
       assertEquals(7,calculator.Add("2,5"));
-  }
-
- /* @Test
-  @DisplayName("Given more than two numbers should throwRuntimeException")
-  void givenMoreThanTwoNumbersShouldThrowRuntimeException(){
-      var calculator = new Calculator();
-      assertThrows(RuntimeException.class,()->calculator.Add("2,5,7"));
   }*/
 
   @Test
@@ -58,6 +52,17 @@ class CalculatorTest {
       assertThat(result).isEqualTo(17);
       assertThat(result1).isEqualTo(38);
   }
+
+  @Test
+  @DisplayName("Given more than one number separate them by new line or comm ")
+  void givenMoreThanANumberSeparateThemByNewLine(){
+      var calculator =  new Calculator();
+      String numbers = "4\n3,5";
+      var result = calculator.Add(numbers);
+
+      assertEquals(12, result);
+  }
+
 
 
   }

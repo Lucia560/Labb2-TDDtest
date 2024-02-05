@@ -13,7 +13,13 @@ public class Calculator {
         if (numbers.isEmpty() || numbers == null) {
             return 0;
         }
-        String[] numbersAllowed = numbers.split(",");
+        //correct input format, new line
+        if (numbers.contains(",\n") || numbers.contains("\n,")) {
+            throw new IllegalArgumentException("Invalid format.");
+        }
+
+        String[] numbersAllowed = numbers.split(",|\\n");
+
         // unknown amount  of numbers, change to List<>
         List<Integer> numberList = new ArrayList<>();
 
