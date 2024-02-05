@@ -13,16 +13,19 @@ public class Calculator {
         if (numbers.isEmpty() || numbers == null) {
             return 0;
         }
-        //max 2 numbers
         String[] numbersAllowed = numbers.split(",");
-        if (numbersAllowed.length > 2) {
-            throw new RuntimeException("Max 2 numbers allowed");
-        }
-        int sum = 0;
+        // unknown amount  of numbers, change to List<>
+        List<Integer> numberList = new ArrayList<>();
+
         for (String num : numbersAllowed) {
             if (!num.trim().isEmpty()) { // dont parse empty strings
-                sum += Integer.parseInt(num.trim());
+                numberList.add(Integer.parseInt(num.trim())); // add to the List
             }
+        }
+
+        int sum = 0;
+        for (int number : numberList) {
+            sum += number;
         }
         return sum;
 
