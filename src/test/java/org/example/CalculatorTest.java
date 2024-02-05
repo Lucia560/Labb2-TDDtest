@@ -53,16 +53,31 @@ class CalculatorTest {
     @DisplayName("Throw IllegalArgumentException for input with comma followed by newline")
     void throwIllegalArgumentExceptionForCommaFollowedByNewline() {
         var calculator = new Calculator();
-        String input = "1,\n";
+        String numbers = "1,\n";
 
         var exception = assertThrows(IllegalArgumentException.class, () -> {
-            calculator.Add(input);
+            calculator.Add(numbers);
         });
 
         String expectedMessage = "Invalid format.";
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    @DisplayName("Given negative number throw an exception and show  all the negative numbers")
+    void givenNegativeNumberThrowAnExceptionAndShowAllTheNegativeNumbers(){
+      var calculator = new Calculator();
+      String numbers ="-3,3,6";
+
+      var exception = assertThrows(IllegalArgumentException.class,()->calculator.Add(numbers));
+
+      String expectedMessage = "Negative numbers are not allowed:-3";
+      String actualMessage = exception.getMessage();
+
+      assertTrue(actualMessage.contains(expectedMessage));
+
     }
 
 }
