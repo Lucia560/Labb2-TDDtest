@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CalculatorTest {
 
  Calculator calculator;
-  // test for empty string. one number , 2 numbers
+  // tests for empty string. one number , 2 numbers
 
   @Test
   @DisplayName("Given an empty string return 0")
@@ -23,9 +23,19 @@ class CalculatorTest {
       assertEquals(0, calculator.Add(""));
   }
 
+  @Test
+  @DisplayName("Given two as number return  sum as two")
+  void givenTwoAsANumberReturnSumAsTwo(){
+      var calculator =  new Calculator();
+      assertEquals(2,calculator.Add("2"));
+  }
 
-
-
+  @Test
+  @DisplayName("Given two and five as numbers return the sum equals  seven ")
+  void givenTwoAndFiveAsNumbersTheSumEqualsSeven(){
+      var calculator =  new Calculator();
+      assertEquals(7,calculator.Add("2,5"));
+  }
 
 
 
