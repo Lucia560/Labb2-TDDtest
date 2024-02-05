@@ -13,6 +13,7 @@ class CalculatorTest {
 
  Calculator calculator;
   // tests for empty string. one number , 2 numbers
+  // RuntimeException if there are more then 2 numbers
 
   @Test
   @DisplayName("Given an empty string return 0")
@@ -37,7 +38,12 @@ class CalculatorTest {
       assertEquals(7,calculator.Add("2,5"));
   }
 
-
+  @Test
+  @DisplayName("Given more than two numbers should throwRuntimeException")
+  void givenMoreThanTwoNumbersShouldThrowRuntimeException(){
+      var calculator = new Calculator();
+      assertThrows(RuntimeException.class,()->calculator.Add("2,5,7"));
+  }
 
 
   }
