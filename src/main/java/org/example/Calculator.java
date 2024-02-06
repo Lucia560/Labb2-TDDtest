@@ -18,12 +18,13 @@ public class Calculator {
 
 
         String delimiter = "[,\n]"; // default delimiter
-        if (numbers.startsWith("//")) { // custom delimiter
+        if (numbers.startsWith("//")) {
             int delimiterIndex = numbers.indexOf("\n");
             String delimiterPart = numbers.substring(2, delimiterIndex);
-            numbers = numbers.substring(delimiterIndex + 1);
             delimiter = parseDelimiter(delimiterPart);
+            numbers = numbers.substring(delimiterIndex + 1);
         }
+
 
 
         String[] numbersArray = numbers.split(delimiter);
@@ -48,13 +49,15 @@ public class Calculator {
 
         return sum;
     }
-
     private String parseDelimiter(String delimiterPart) {
-        if (delimiterPart.startsWith("[")) {
-            delimiterPart = delimiterPart.substring(1, delimiterPart.length() - 1);
+
+        String[] delimiters = delimiterPart.split("\\]\\[");
+        for (int i = 0; i < delimiters.length; i++) {
+            delimiters[i] = Pattern.quote(delimiters[i].replaceAll("\\[|\\]", ""));
         }
-        return Pattern.quote(delimiterPart);
+        return String.join("|", delimiters);
     }
+
 
 }
 

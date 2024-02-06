@@ -56,9 +56,7 @@ class CalculatorTest {
         var calculator = new Calculator();
         String numbers = "1,\n";
 
-        var exception = assertThrows(IllegalArgumentException.class, () -> {
-            calculator.Add(numbers);
-        });
+        var exception = assertThrows(IllegalArgumentException.class, () -> calculator.Add(numbers));
 
         String expectedMessage = "Invalid format.";
         String actualMessage = exception.getMessage();
@@ -99,6 +97,16 @@ class CalculatorTest {
       var result = calculator.Add(numbers);
 
       assertThat(result).isEqualTo(11);
+    }
+
+    @Test
+    @DisplayName("Given more than one number allow multiple delimiters")
+    void givenMoreThanOneNumberAllowMultipleDelimiters(){
+      var calculator = new Calculator();
+      String numbers = "//[*][%]\n6*7%3";
+      var result = calculator.Add(numbers);
+
+      assertThat(result).isEqualTo(16);
     }
 
 }
