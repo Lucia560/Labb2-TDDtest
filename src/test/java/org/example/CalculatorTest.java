@@ -91,6 +91,16 @@ class CalculatorTest {
        assertThat(result).isEqualTo(2);
     }
 
+    @Test
+    @DisplayName("Given more than one number custom delimiter can have any length")
+    void givenMoreThanOneNumberCustomDelimiterCanHaveAnyLength(){
+      var calculator = new Calculator();
+      String numbers = "//[***]\n5***6";
+      var result = calculator.Add(numbers);
+
+      assertThat(result).isEqualTo(11);
+    }
+
 }
 
 

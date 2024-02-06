@@ -17,12 +17,14 @@ public class Calculator {
         }
 
 
-        String delimiter = "[,\n]";
-        if (numbers.startsWith("//")) {
+        String delimiter = "[,\n]"; // default delimiter
+        if (numbers.startsWith("//")) { // custom delimiter
             int delimiterIndex = numbers.indexOf("\n");
-            delimiter = Pattern.quote(numbers.substring(2, delimiterIndex));
+            String delimiterPart = numbers.substring(2, delimiterIndex);
             numbers = numbers.substring(delimiterIndex + 1);
+            delimiter = parseDelimiter(delimiterPart);
         }
+
 
         String[] numbersArray = numbers.split(delimiter);
         List<Integer> negativeNumbers = new ArrayList<>();
@@ -46,9 +48,15 @@ public class Calculator {
 
         return sum;
     }
+
+    private String parseDelimiter(String delimiterPart) {
+        if (delimiterPart.startsWith("[")) {
+            delimiterPart = delimiterPart.substring(1, delimiterPart.length() - 1);
+        }
+        return Pattern.quote(delimiterPart);
+    }
+
 }
-
-
 
 
 
